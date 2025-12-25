@@ -31,8 +31,8 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain_BLG));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panelMainButton_BLG = new Panel();
             buttonReset_BLG = new Button();
@@ -45,10 +45,6 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             buttonSaveData_BLG = new Button();
             buttonOpenFile_BLG = new Button();
             splitterButton_BLG = new Splitter();
-            toolTipButtonOpenFile_BLG = new ToolTip(components);
-            toolTipButtonSaveData_BLG = new ToolTip(components);
-            toolTipSeeFunction_BLG = new ToolTip(components);
-            toolTipHelp_BLG = new ToolTip(components);
             saveFileDialog_BLG = new SaveFileDialog();
             panelFilterButton_BLG = new Panel();
             groupBoxFilter_BLG = new GroupBox();
@@ -80,6 +76,12 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             dataGridViewData_BLG = new DataGridView();
             chartFunction_BLG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             openFileDialog_BLG = new OpenFileDialog();
+            toolTipSeeCatalog_BLG = new ToolTip(components);
+            toolTipSaveData_BLG = new ToolTip(components);
+            toolTipSeeStatistics_BLG = new ToolTip(components);
+            toolTipBuildChart_BLG = new ToolTip(components);
+            toolTipDataReset_BLG = new ToolTip(components);
+            toolTipHelp_BLG = new ToolTip(components);
             panelMainButton_BLG.SuspendLayout();
             groupBoxNameWare_BLG.SuspendLayout();
             panelFilterButton_BLG.SuspendLayout();
@@ -118,15 +120,18 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonReset_BLG
             // 
-            buttonReset_BLG.BackColor = SystemColors.ActiveCaption;
+            buttonReset_BLG.BackColor = SystemColors.ControlLight;
+            buttonReset_BLG.Cursor = Cursors.Hand;
             buttonReset_BLG.Enabled = false;
+            buttonReset_BLG.Image = (Image)resources.GetObject("buttonReset_BLG.Image");
             buttonReset_BLG.Location = new Point(964, 12);
             buttonReset_BLG.Name = "buttonReset_BLG";
             buttonReset_BLG.Size = new Size(232, 125);
             buttonReset_BLG.TabIndex = 7;
-            buttonReset_BLG.Text = "Сброс данных";
+            toolTipDataReset_BLG.SetToolTip(buttonReset_BLG, "Сбросить данные и вернуть исходную таблицу");
             buttonReset_BLG.UseVisualStyleBackColor = false;
             buttonReset_BLG.Click += buttonReset_BLG_Click;
+            buttonReset_BLG.MouseEnter += buttonReset_BLG_MouseEnter;
             // 
             // groupBoxNameWare_BLG
             // 
@@ -143,6 +148,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // textBoxSearch_BLG
             // 
             textBoxSearch_BLG.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxSearch_BLG.Cursor = Cursors.IBeam;
             textBoxSearch_BLG.Location = new Point(16, 34);
             textBoxSearch_BLG.Name = "textBoxSearch_BLG";
             textBoxSearch_BLG.Size = new Size(367, 39);
@@ -150,20 +156,24 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonStatistics_BLG
             // 
-            buttonStatistics_BLG.BackColor = SystemColors.ActiveCaption;
+            buttonStatistics_BLG.BackColor = SystemColors.ControlLight;
+            buttonStatistics_BLG.Cursor = Cursors.Hand;
             buttonStatistics_BLG.Enabled = false;
+            buttonStatistics_BLG.Image = (Image)resources.GetObject("buttonStatistics_BLG.Image");
             buttonStatistics_BLG.Location = new Point(488, 12);
             buttonStatistics_BLG.Name = "buttonStatistics_BLG";
             buttonStatistics_BLG.Size = new Size(232, 125);
             buttonStatistics_BLG.TabIndex = 5;
-            buttonStatistics_BLG.Text = "Статистика";
+            toolTipSeeStatistics_BLG.SetToolTip(buttonStatistics_BLG, "Составить статистику на основе загруженных данных");
             buttonStatistics_BLG.UseVisualStyleBackColor = false;
             buttonStatistics_BLG.Click += buttonStatistics_BLG_Click;
+            buttonStatistics_BLG.MouseEnter += buttonStatistics_BLG_MouseEnter;
             // 
             // buttonSearch_BLG
             // 
             buttonSearch_BLG.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonSearch_BLG.BackColor = Color.FromArgb(192, 255, 255);
+            buttonSearch_BLG.Cursor = Cursors.Hand;
             buttonSearch_BLG.Location = new Point(1627, 55);
             buttonSearch_BLG.Name = "buttonSearch_BLG";
             buttonSearch_BLG.Size = new Size(181, 51);
@@ -175,50 +185,62 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // buttonHelp_BLG
             // 
             buttonHelp_BLG.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonHelp_BLG.BackColor = SystemColors.ActiveCaption;
+            buttonHelp_BLG.BackColor = SystemColors.ControlLight;
+            buttonHelp_BLG.Cursor = Cursors.Hand;
+            buttonHelp_BLG.Image = (Image)resources.GetObject("buttonHelp_BLG.Image");
             buttonHelp_BLG.Location = new Point(1826, 12);
             buttonHelp_BLG.Name = "buttonHelp_BLG";
             buttonHelp_BLG.Size = new Size(136, 125);
             buttonHelp_BLG.TabIndex = 3;
-            buttonHelp_BLG.Text = "Справка";
-            toolTipHelp_BLG.SetToolTip(buttonHelp_BLG, "О программе");
+            toolTipHelp_BLG.SetToolTip(buttonHelp_BLG, "Информация о разработчике и программе ");
             buttonHelp_BLG.UseVisualStyleBackColor = false;
             buttonHelp_BLG.Click += ButtonHelp_BLG_Click;
+            buttonHelp_BLG.MouseEnter += buttonHelp_BLG_MouseEnter;
             // 
             // buttonFunction_BLG
             // 
-            buttonFunction_BLG.BackColor = SystemColors.ActiveCaption;
+            buttonFunction_BLG.BackColor = SystemColors.ControlLight;
+            buttonFunction_BLG.Cursor = Cursors.Hand;
             buttonFunction_BLG.Enabled = false;
+            buttonFunction_BLG.Image = (Image)resources.GetObject("buttonFunction_BLG.Image");
             buttonFunction_BLG.Location = new Point(726, 12);
             buttonFunction_BLG.Name = "buttonFunction_BLG";
             buttonFunction_BLG.Size = new Size(232, 125);
             buttonFunction_BLG.TabIndex = 3;
-            buttonFunction_BLG.Text = "Построить график";
+            toolTipBuildChart_BLG.SetToolTip(buttonFunction_BLG, "Построить график на основе статистики");
             buttonFunction_BLG.UseVisualStyleBackColor = false;
             buttonFunction_BLG.Click += buttonFunction_BLG_Click;
+            buttonFunction_BLG.MouseEnter += buttonFunction_BLG_MouseEnter;
             // 
             // buttonSaveData_BLG
             // 
-            buttonSaveData_BLG.BackColor = SystemColors.ActiveCaption;
+            buttonSaveData_BLG.BackColor = SystemColors.ControlLight;
+            buttonSaveData_BLG.Cursor = Cursors.Hand;
             buttonSaveData_BLG.Enabled = false;
+            buttonSaveData_BLG.Image = (Image)resources.GetObject("buttonSaveData_BLG.Image");
             buttonSaveData_BLG.Location = new Point(250, 12);
             buttonSaveData_BLG.Name = "buttonSaveData_BLG";
             buttonSaveData_BLG.Size = new Size(232, 125);
             buttonSaveData_BLG.TabIndex = 2;
-            buttonSaveData_BLG.Text = "Сохранить данные";
+            toolTipSaveData_BLG.SetToolTip(buttonSaveData_BLG, "Сохранить таблицу с данными");
             buttonSaveData_BLG.UseVisualStyleBackColor = false;
             buttonSaveData_BLG.Click += buttonSaveData_BLG_Click;
+            buttonSaveData_BLG.MouseEnter += buttonSaveData_BLG_MouseEnter;
             // 
             // buttonOpenFile_BLG
             // 
-            buttonOpenFile_BLG.BackColor = SystemColors.ActiveCaption;
+            buttonOpenFile_BLG.BackColor = SystemColors.ControlLight;
+            buttonOpenFile_BLG.Cursor = Cursors.Hand;
+            buttonOpenFile_BLG.Image = (Image)resources.GetObject("buttonOpenFile_BLG.Image");
             buttonOpenFile_BLG.Location = new Point(12, 12);
             buttonOpenFile_BLG.Name = "buttonOpenFile_BLG";
             buttonOpenFile_BLG.Size = new Size(232, 125);
             buttonOpenFile_BLG.TabIndex = 1;
-            buttonOpenFile_BLG.Text = "Показать каталог";
+            toolTipSeeCatalog_BLG.SetToolTip(buttonOpenFile_BLG, "Открыть файл с данными о товарах");
             buttonOpenFile_BLG.UseVisualStyleBackColor = false;
+            buttonOpenFile_BLG.EnabledChanged += buttonOpenFile_BLG_Click;
             buttonOpenFile_BLG.Click += buttonOpenFile_BLG_Click;
+            buttonOpenFile_BLG.MouseEnter += buttonOpenFile_BLG_MouseEnter;
             // 
             // splitterButton_BLG
             // 
@@ -228,22 +250,6 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             splitterButton_BLG.Size = new Size(1974, 6);
             splitterButton_BLG.TabIndex = 0;
             splitterButton_BLG.TabStop = false;
-            // 
-            // toolTipButtonOpenFile_BLG
-            // 
-            toolTipButtonOpenFile_BLG.ToolTipTitle = "Загрузить каталог товаров и вывести в таблицу";
-            // 
-            // toolTipButtonSaveData_BLG
-            // 
-            toolTipButtonSaveData_BLG.ToolTipTitle = "Загрузить данные о поставщиках и вывести их в таблицу";
-            // 
-            // toolTipSeeFunction_BLG
-            // 
-            toolTipSeeFunction_BLG.ToolTipTitle = "Построить график функции";
-            // 
-            // toolTipHelp_BLG
-            // 
-            toolTipHelp_BLG.ToolTipTitle = "О программе и разработчике";
             // 
             // saveFileDialog_BLG
             // 
@@ -286,7 +292,8 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonFilterByQuantity_BLG
             // 
-            buttonFilterByQuantity_BLG.BackColor = Color.FromArgb(192, 255, 192);
+            buttonFilterByQuantity_BLG.BackColor = Color.FromArgb(192, 255, 255);
+            buttonFilterByQuantity_BLG.Cursor = Cursors.Hand;
             buttonFilterByQuantity_BLG.Location = new Point(19, 93);
             buttonFilterByQuantity_BLG.Name = "buttonFilterByQuantity_BLG";
             buttonFilterByQuantity_BLG.Size = new Size(153, 40);
@@ -297,6 +304,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // textBoxFilterQuantity_BLG
             // 
+            textBoxFilterQuantity_BLG.Cursor = Cursors.IBeam;
             textBoxFilterQuantity_BLG.Location = new Point(19, 48);
             textBoxFilterQuantity_BLG.Name = "textBoxFilterQuantity_BLG";
             textBoxFilterQuantity_BLG.Size = new Size(223, 39);
@@ -315,7 +323,8 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonFilterByPrice_BLG
             // 
-            buttonFilterByPrice_BLG.BackColor = Color.FromArgb(192, 255, 192);
+            buttonFilterByPrice_BLG.BackColor = Color.FromArgb(192, 255, 255);
+            buttonFilterByPrice_BLG.Cursor = Cursors.Hand;
             buttonFilterByPrice_BLG.Location = new Point(19, 93);
             buttonFilterByPrice_BLG.Name = "buttonFilterByPrice_BLG";
             buttonFilterByPrice_BLG.Size = new Size(153, 40);
@@ -326,6 +335,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // textBoxFilterPrice_BLG
             // 
+            textBoxFilterPrice_BLG.Cursor = Cursors.IBeam;
             textBoxFilterPrice_BLG.Location = new Point(19, 48);
             textBoxFilterPrice_BLG.Name = "textBoxFilterPrice_BLG";
             textBoxFilterPrice_BLG.Size = new Size(223, 39);
@@ -344,7 +354,8 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonFilterByDate_BLG
             // 
-            buttonFilterByDate_BLG.BackColor = Color.FromArgb(192, 255, 192);
+            buttonFilterByDate_BLG.BackColor = Color.FromArgb(192, 255, 255);
+            buttonFilterByDate_BLG.Cursor = Cursors.Hand;
             buttonFilterByDate_BLG.Location = new Point(17, 93);
             buttonFilterByDate_BLG.Name = "buttonFilterByDate_BLG";
             buttonFilterByDate_BLG.Size = new Size(153, 40);
@@ -355,6 +366,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // dateTimePickerFilter_BLG
             // 
+            dateTimePickerFilter_BLG.Cursor = Cursors.Hand;
             dateTimePickerFilter_BLG.Location = new Point(17, 48);
             dateTimePickerFilter_BLG.Name = "dateTimePickerFilter_BLG";
             dateTimePickerFilter_BLG.Size = new Size(294, 39);
@@ -398,6 +410,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonSortByDateDesc_BLG
             // 
+            buttonSortByDateDesc_BLG.Cursor = Cursors.Hand;
             buttonSortByDateDesc_BLG.Location = new Point(1452, 38);
             buttonSortByDateDesc_BLG.Name = "buttonSortByDateDesc_BLG";
             buttonSortByDateDesc_BLG.Size = new Size(234, 65);
@@ -408,6 +421,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonSortByDateAsc_BLG
             // 
+            buttonSortByDateAsc_BLG.Cursor = Cursors.Hand;
             buttonSortByDateAsc_BLG.Location = new Point(1212, 38);
             buttonSortByDateAsc_BLG.Name = "buttonSortByDateAsc_BLG";
             buttonSortByDateAsc_BLG.Size = new Size(234, 65);
@@ -418,6 +432,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonSortByPriceDesc_BLG
             // 
+            buttonSortByPriceDesc_BLG.Cursor = Cursors.Hand;
             buttonSortByPriceDesc_BLG.Location = new Point(972, 38);
             buttonSortByPriceDesc_BLG.Name = "buttonSortByPriceDesc_BLG";
             buttonSortByPriceDesc_BLG.Size = new Size(234, 65);
@@ -428,6 +443,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonSortByPriceAsc_BLG
             // 
+            buttonSortByPriceAsc_BLG.Cursor = Cursors.Hand;
             buttonSortByPriceAsc_BLG.Location = new Point(732, 38);
             buttonSortByPriceAsc_BLG.Name = "buttonSortByPriceAsc_BLG";
             buttonSortByPriceAsc_BLG.Size = new Size(234, 65);
@@ -438,6 +454,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonSortByQuantityDesc_BLG
             // 
+            buttonSortByQuantityDesc_BLG.Cursor = Cursors.Hand;
             buttonSortByQuantityDesc_BLG.Location = new Point(492, 38);
             buttonSortByQuantityDesc_BLG.Name = "buttonSortByQuantityDesc_BLG";
             buttonSortByQuantityDesc_BLG.Size = new Size(234, 65);
@@ -448,6 +465,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonSortByQuantityAsc_BLG
             // 
+            buttonSortByQuantityAsc_BLG.Cursor = Cursors.Hand;
             buttonSortByQuantityAsc_BLG.Location = new Point(252, 38);
             buttonSortByQuantityAsc_BLG.Name = "buttonSortByQuantityAsc_BLG";
             buttonSortByQuantityAsc_BLG.Size = new Size(234, 65);
@@ -458,6 +476,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // buttonSortByName_BLG
             // 
+            buttonSortByName_BLG.Cursor = Cursors.Hand;
             buttonSortByName_BLG.Location = new Point(12, 38);
             buttonSortByName_BLG.Name = "buttonSortByName_BLG";
             buttonSortByName_BLG.Size = new Size(234, 65);
@@ -538,7 +557,8 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // dataGridViewData_BLG
             // 
-            dataGridViewData_BLG.BackgroundColor = SystemColors.ActiveCaption;
+            dataGridViewData_BLG.AllowUserToAddRows = false;
+            dataGridViewData_BLG.BackgroundColor = SystemColors.ControlLight;
             dataGridViewData_BLG.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewData_BLG.Dock = DockStyle.Fill;
             dataGridViewData_BLG.Location = new Point(10, 42);
@@ -554,12 +574,9 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             chartArea1.Name = "ChartArea1";
             chartFunction_BLG.ChartAreas.Add(chartArea1);
             chartFunction_BLG.Dock = DockStyle.Fill;
-            legend1.Name = "Legend1";
-            chartFunction_BLG.Legends.Add(legend1);
             chartFunction_BLG.Location = new Point(0, 0);
             chartFunction_BLG.Name = "chartFunction_BLG";
             series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
             series1.Name = "Series1";
             chartFunction_BLG.Series.Add(series1);
             chartFunction_BLG.Size = new Size(1021, 819);
@@ -568,7 +585,31 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
             // 
             // openFileDialog_BLG
             // 
-            openFileDialog_BLG.FileName = "Output.csv";
+            openFileDialog_BLG.FileName = "InputFileData.csv";
+            // 
+            // toolTipSeeCatalog_BLG
+            // 
+            toolTipSeeCatalog_BLG.IsBalloon = true;
+            // 
+            // toolTipSaveData_BLG
+            // 
+            toolTipSaveData_BLG.IsBalloon = true;
+            // 
+            // toolTipSeeStatistics_BLG
+            // 
+            toolTipSeeStatistics_BLG.IsBalloon = true;
+            // 
+            // toolTipBuildChart_BLG
+            // 
+            toolTipBuildChart_BLG.IsBalloon = true;
+            // 
+            // toolTipDataReset_BLG
+            // 
+            toolTipDataReset_BLG.IsBalloon = true;
+            // 
+            // toolTipHelp_BLG
+            // 
+            toolTipHelp_BLG.IsBalloon = true;
             // 
             // FormMain_BLG
             // 
@@ -618,10 +659,6 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
         private Button buttonSearch_BLG;
         private Button buttonHelp_BLG;
         private TextBox textBoxSearch_BLG;
-        private ToolTip toolTipButtonOpenFile_BLG;
-        private ToolTip toolTipButtonSaveData_BLG;
-        private ToolTip toolTipSeeFunction_BLG;
-        private ToolTip toolTipHelp_BLG;
         private SaveFileDialog saveFileDialog_BLG;
         private Button buttonStatistics_BLG;
         private Panel panelFilterButton_BLG;
@@ -656,5 +693,11 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
         private Button buttonSortByPriceAsc_BLG;
         private Button buttonSortByDateDesc_BLG;
         private OpenFileDialog openFileDialog_BLG;
+        private ToolTip toolTipSeeCatalog_BLG;
+        private ToolTip toolTipSaveData_BLG;
+        private ToolTip toolTipSeeStatistics_BLG;
+        private ToolTip toolTipBuildChart_BLG;
+        private ToolTip toolTipDataReset_BLG;
+        private ToolTip toolTipHelp_BLG;
     }
 }

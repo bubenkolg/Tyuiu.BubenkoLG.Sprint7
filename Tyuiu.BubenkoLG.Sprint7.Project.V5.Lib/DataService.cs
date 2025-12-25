@@ -3,9 +3,6 @@ using System.IO;
 using System.Text;
 
 namespace Tyuiu.BubenkoLG.Sprint7.Project.V5.Lib
-//Ввод, редактирование, поиск, сортировка, фильтрация, сохранения в файл(ы), чтение из фала(лов) данных.
-//Реализовать элементы статистики (количество, сумма, среднее, min, max и т.д.).
-//График (гистограмма / функция / диаграмм).
 {
     public class Product
     {
@@ -32,63 +29,36 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5.Lib
         {
             products.Clear();
 
-            try
+            using (var reader = new StreamReader(filePath, Encoding.UTF8))
             {
-                using (var reader = new StreamReader(filePath, Encoding.Default))
+
+                while (!reader.EndOfStream)
                 {
+                    var line = reader.ReadLine();
+                    var values = line.Split(';');
 
-                    while (!reader.EndOfStream)
+                    if (values.Length <= 9)
                     {
-                        var line = reader.ReadLine();
-                        var values = line.Split(';');
-
-                        if (values.Length >= 10)
+                        var product = new Product
                         {
-                            var product = new Product
-                            {
-                                Id = int.Parse(values[0]),
-                                Name = values[1],
-                                StockQuantity = int.Parse(values[3]),
-                                UnitPrice = decimal.Parse(values[4]),
-                                Description = values[5],
-                                SupplierNumber = values[6],
-                                SupplierName = values[7],
-                                DeliveryDate = DateTime.ParseExact(values[8], "dd.MM.yyyy", CultureInfo.InvariantCulture),
-                                DeliveryQuantity = int.Parse(values[9])
-                            };
+                            Id = int.Parse(values[0]),
+                            Name = values[1],
+                            StockQuantity = int.Parse(values[2]),
+                            UnitPrice = decimal.Parse(values[3]),
+                            Description = values[4],
+                            SupplierNumber = values[5],
+                            SupplierName = values[6],
+                            DeliveryDate = DateTime.ParseExact(values[7], "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                            DeliveryQuantity = int.Parse(values[8])
+                        };
 
-                            products.Add(product);
-                        }
+                        products.Add(product);
                     }
                 }
-                return products;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Ошибка при загрузке файла: {ex.Message}");
-            }
-        }
-        
-        public void SaveToFile(string filePath, List<Product> data)
-        {
-            try
-            {
-                using (var writer = new StreamWriter(filePath, false))
-                {
-                    // Записываем заголовок
-                    writer.WriteLine("Код товара;Название товара;Количество на складе;Стоимость за единицу/кг товара/руб.;Описание товара;Номер поставщика;ФИО поставщика;Срок поставки;Количество товаров в поставке");
 
-                    // Записываем данные
-                    foreach (var product in data)
-                    {
-                        writer.WriteLine($"{product.Id};{product.Name};{product.Name};{product.StockQuantity};{product.UnitPrice};{product.Description};{product.SupplierNumber};{product.SupplierName};{product.DeliveryDate:dd.MM.yyyy};{product.DeliveryQuantity}");
-                    }
-                }
+
             }
-            catch (Exception ex)
-            {
-                throw new Exception($"Ошибка при сохранении файла: {ex.Message}");
-            }
+            return products;
         }
 
         public List<Product> SearchByName(string name)

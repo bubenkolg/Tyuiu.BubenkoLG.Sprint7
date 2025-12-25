@@ -5,9 +5,8 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5.Test
     public sealed class DataServiceTest
     {
         [TestMethod]
-        public void ValidGetMatrix()
+        public void TestMethod()
         {
-            
         }
     }
 }
