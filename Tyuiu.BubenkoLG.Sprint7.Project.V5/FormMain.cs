@@ -139,7 +139,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
         }
         private void buttonFilterByPrice_BLG_Click(object sender, EventArgs e)
         {
-            if (decimal.TryParse(textBoxFilterPrice_BLG.Text, out decimal price))
+            if (decimal.TryParse(textBoxFilterPrice_BLG.Text, out decimal price))  //
             {
                 currentData = ds.FilterBy("price", price);
                 BindDataGridView(currentData);
@@ -148,7 +148,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
         }
         private void buttonFilterByQuantity_BLG_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxFilterQuantity_BLG.Text, out int quantity))
+            if (int.TryParse(textBoxFilterQuantity_BLG.Text, out int quantity))  
             {
                 currentData = ds.FilterBy("quantity", quantity);
                 BindDataGridView(currentData);
@@ -168,7 +168,7 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
                 statsTable.Columns.Add("Показатель", typeof(string));
                 statsTable.Columns.Add("Значение", typeof(string));
 
-                statsTable.Rows.Add("Общее количество поставленных товаров", stats.TotalDeliveryQuantity.ToString("N0"));
+                statsTable.Rows.Add("Общее количество поставленных товаров", stats.TotalDeliveryQuantity.ToString("N0")); //
                 statsTable.Rows.Add("Общая сумма поставленных товаров (руб.)", stats.TotalDeliveryValue.ToString("N2"));
 
                 dataGridViewData_BLG.DataSource = statsTable;
@@ -199,11 +199,11 @@ namespace Tyuiu.BubenkoLG.Sprint7.Project.V5
 
                 foreach (DataGridViewRow row in dataGridView.Rows)
                 {
-                    if (!row.IsNewRow)
+                    if (!row.IsNewRow)  //
                     {
                         for (int i = 0; i < dataGridView.Columns.Count; i++)
                         {
-                            var cellValue = row.Cells[i].Value?.ToString() ?? "";
+                            var cellValue = row.Cells[i].Value?.ToString() ?? "";  //
                             writer.Write(cellValue);
 
                             if (i < dataGridView.Columns.Count - 1)
